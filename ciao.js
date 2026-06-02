@@ -501,21 +501,20 @@ html, body {
 
 /* ── SUBSCRIPTION EXPIRY BOX ── */
 .dash-stream-expiry {
-  margin-top: 20px !important;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
-  border: 1px solid rgba(239, 68, 68, 0.18) !important;
-  border-left: 4px solid var(--accent) !important;
-  padding: 1rem !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
-  transition: var(--transition) !important;
+  margin-top: 16px !important;
+  background: transparent !important;
+  border: none !important;
+  border-left: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  transition: none !important;
 }
 
 .dash-stream-expiry:hover {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(15, 23, 42, 0.7) 100%) !important;
-  border-color: rgba(239, 68, 68, 0.35) !important;
-  box-shadow: 0 12px 36px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-  transform: translateY(-2px) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .dash-stream-expiry-title {
