@@ -519,17 +519,7 @@ html, body {
 }
 
 .dash-stream-expiry-title {
-  font-family: var(--font-main), sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  color: var(--accent) !important;
-  margin-bottom: 6px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  text-shadow: 0 0 10px rgba(239, 68, 68, 0.35) !important;
+  display: none !important;
 }
 
 .dash-stream-expiry-desc {
