@@ -178,8 +178,8 @@ html, body {
 .countdown-box {
   text-align: center !important;
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(15, 23, 42, 0.75) 100%) !important;
-  padding: 1rem !important;
-  border-radius: 16px !important;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
   border: 1px solid rgba(239, 68, 68, 0.2) !important;
   border-left: 4px solid var(--accent) !important;
   margin: 0 0 1.8rem !important;
@@ -199,6 +199,7 @@ html, body {
   font-family: var(--font-alt), sans-serif !important;
   font-weight: 700 !important;
   color: var(--text-primary) !important;
+  font-size: 11px !important;
 }
 
 /* ── TITOLO SEZIONE ── */
@@ -304,16 +305,16 @@ html, body {
 #cur-name,
 .dash-info-title {
   font-family: var(--font-main), sans-serif !important;
-  font-size: 34px !important;
+  font-size: 24px !important;
   font-weight: 900 !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
   color: #fff !important;
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 65%, #94a3b8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  letter-spacing: -1.5px !important;
+  letter-spacing: -1px !important;
   text-transform: uppercase !important;
-  line-height: 1.15 !important;
+  line-height: 1.2 !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)) !important;
 }
@@ -419,8 +420,10 @@ html, body {
 /* Red Live badge adjustments */
 .dash-info-now-box span[style*="color:#00e676"],
 .dash-info-now-box span[style*="color: rgb(0, 230, 118)"],
-.dash-info-now-box span[style*="color:#00e676"] !important,
-.dash-info-now-box span[style*="color: rgb(0, 230, 118)"] !important {
+.dash-info-now-box span[style*="color"],
+.dash-info-now-box .live-tag,
+.dash-info-now-box span[class*="live"],
+.dash-info-now-box span[style*="color: rgb(0, 230, 118)"] {
   color: #fff !important; /* Made white as requested */
   background: rgba(239, 68, 68, 0.15) !important;
   border-color: rgba(239, 68, 68, 0.3) !important;
@@ -432,8 +435,9 @@ html, body {
 /* Pulser Live Dot */
 .dash-info-now-box span[style*="background:#00e676"],
 .dash-info-now-box span[style*="background: rgb(0, 230, 118)"],
-.dash-info-now-box span[style*="background:#00e676"] !important,
-.dash-info-now-box span[style*="background: rgb(0, 230, 118)"] !important {
+.dash-info-now-box span[style*="background"],
+.dash-info-now-box .live-tag .dot,
+.dash-info-now-box span[class*="dot"] {
   background: #ef4444 !important;
   animation: pulse-live 1.8s infinite ease-in-out !important;
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.6) !important;
@@ -497,12 +501,12 @@ html, body {
 
 /* ── SUBSCRIPTION EXPIRY BOX ── */
 .dash-stream-expiry {
-  margin-top: 24px !important;
+  margin-top: 20px !important;
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
   border: 1px solid rgba(239, 68, 68, 0.18) !important;
   border-left: 4px solid var(--accent) !important;
-  padding: 1.4rem !important;
-  border-radius: 16px !important;
+  padding: 1rem !important;
+  border-radius: 12px !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
   transition: var(--transition) !important;
 }
@@ -516,13 +520,13 @@ html, body {
 
 .dash-stream-expiry-title {
   font-family: var(--font-main), sans-serif !important;
-  font-size: 0.9rem !important;
+  font-size: 12px !important;
   font-weight: 800 !important;
   color: var(--accent) !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 6px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 6px !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
   text-shadow: 0 0 10px rgba(239, 68, 68, 0.35) !important;
@@ -530,9 +534,9 @@ html, body {
 
 .dash-stream-expiry-desc {
   font-family: var(--font-alt), sans-serif !important;
-  font-size: 0.8rem !important;
+  font-size: 11px !important;
   color: var(--text-secondary) !important;
-  line-height: 1.5 !important;
+  line-height: 1.4 !important;
   font-weight: 500 !important;
 }
 
