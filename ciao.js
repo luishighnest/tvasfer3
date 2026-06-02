@@ -11,7 +11,7 @@
 
 GM_addStyle(`
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root{
 --bg:#060912;
@@ -23,25 +23,13 @@ GM_addStyle(`
 --cyan:#00e5ff;
 --text:#ffffff;
 --muted:#94a3b8;
-
-/* New graphics premium variables */
---accent:               #ef4444;
---accent-glow:          rgba(239, 68, 68, .28);
---accent2:              #b91c1c;
---text-primary:         #f8fafc;
---text-secondary:       #94a3b8;
---text-muted:           #64748b;
---radius:               16px;
---radius-sm:            10px;
---radius-lg:            24px;
---transition:           all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html,
 body{
-background:#0a0a0a!important;
-background-image:radial-gradient(circle at top right, rgba(15, 23, 42, 0.5) 0%, transparent 40%),
-                 radial-gradient(circle at bottom left, rgba(2, 6, 23, 0.8) 0%, transparent 40%)!important;
+background: #020617 !important;
+background-image: radial-gradient(circle at top right, rgba(15, 23, 42, 0.4) 0%, transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(2, 6, 23, 0.7) 0%, transparent 45%) !important;
 font-family:'Outfit',sans-serif!important;
 overflow:hidden;
 }
@@ -49,7 +37,7 @@ overflow:hidden;
 .app{
 padding:15px!important;
 gap:15px!important;
-background:transparent!important; /* Transparent background to allow radial body gradient */
+background:transparent!important; /* Transparent to let body gradients show */
 }
 
 .sidebar{
@@ -59,11 +47,12 @@ background:linear-gradient(
 #090d18,
 #050811
 )!important;
-border:1px solid rgba(255,255,255,.05)!important;
+border:1px solid rgba(255,255,255,.08)!important;
 border-radius:22px!important;
 padding:18px!important;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+overflow-y: auto !important;
 overflow-x: hidden !important;
-overflow-y: auto !important; /* Make sidebar scrollable downwards */
 }
 
 .clock{
@@ -74,12 +63,14 @@ color:#fff!important;
 margin-top:15px!important;
 margin-bottom:15px!important;
 text-align:center!important;
+text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
 }
 
 .countdown-box{
-background:#0f172a!important;
+background: rgba(15, 23, 42, 0.65) !important;
 border-radius:18px!important;
-border:none!important;
+border: 1px solid rgba(255, 255, 255, 0.06) !important;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
 .item{
@@ -96,14 +87,9 @@ transform:translateX(4px);
 }
 
 .item.active{
-background:linear-gradient(
-135deg,
-#ef4444,
-#dc2626
-)!important;
-
-box-shadow:
-0 0 20px rgba(239,68,68,.35)!important;
+background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%) !important;
+box-shadow: 0 4px 15px rgba(239,68,68,.3) !important;
+color: #ffffff !important;
 }
 
 .player-row{
@@ -117,30 +103,24 @@ height:360px!important;
 background:#000!important;
 border-radius:22px!important;
 overflow:hidden!important;
-
 box-shadow:
-0 0 0 1px rgba(255,255,255,.04),
-0 10px 40px rgba(0,0,0,.45)!important;
+0 0 0 1px rgba(255,255,255,.08),
+0 16px 48px rgba(0,0,0,.5)!important;
 }
 
-/* ── DETAILS CARD (riquadro in alto a destra) ── */
 .details{
-background:linear-gradient(
-180deg,
-#0b1020,
-#090d18
-)!important;
-
+background: linear-gradient(180deg, rgba(11, 16, 32, 0.8) 0%, rgba(9, 13, 24, 0.8) 100%) !important;
+backdrop-filter: blur(24px) saturate(1.2) !important;
 border-radius:22px!important;
-border:1px solid rgba(255,255,255,.05)!important;
+border:1px solid rgba(255,255,255,.08)!important;
 padding:22px!important;
 box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .details:hover {
-  border-color: rgba(239, 68, 68, 0.2) !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+border-color: rgba(239, 68, 68, 0.2) !important;
+box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 #cur-name{
@@ -162,7 +142,7 @@ color:#94a3b8!important;
 font-size:15px!important;
 }
 
-/* Grafica premium interna per il riquadro in alto a destra (In Onda / A Seguire) */
+/* Premium inner graphics for Details card */
 .dash-info-now-box {
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(185, 28, 28, 0.03) 100%) !important;
   border: 1px solid rgba(239, 68, 68, 0.2) !important;
@@ -172,7 +152,7 @@ font-size:15px!important;
   box-shadow: 0 4px 20px rgba(239, 68, 68, 0.05) !important;
   position: relative !important;
   overflow: hidden !important;
-  transition: var(--transition) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .dash-info-now-box::before {
@@ -187,7 +167,6 @@ font-size:15px!important;
   box-shadow: 0 8px 30px rgba(239, 68, 68, 0.1) !important;
 }
 
-/* Badge LIVE rosso nel box in onda */
 .dash-info-now-box span[style*="color:#00e676"],
 .dash-info-now-box span[style*="color: rgb(0, 230, 118)"] {
   color: #ef4444 !important;
@@ -200,7 +179,6 @@ font-size:15px!important;
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.6) !important;
 }
 
-/* Barra di avanzamento rossa */
 .dash-info-now-box div[style*="background:linear-gradient"],
 .dash-info-now-box div[style*="background: linear-gradient"] {
   background: linear-gradient(90deg, #ef4444, #b91c1c) !important;
@@ -214,7 +192,7 @@ font-size:15px!important;
   padding: 1.2rem !important;
   position: relative !important;
   overflow: hidden !important;
-  transition: var(--transition) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .dash-info-next-box::before {
@@ -231,12 +209,11 @@ font-size:15px!important;
 
 .dash-stream-expiry {
   margin-top: 20px !important;
-  border-left: 4px solid #ef4444 !important;
   background: rgba(239, 68, 68, 0.03) !important;
   border: 1px solid rgba(239, 68, 68, 0.1) !important;
   padding: 1rem !important;
-  border-radius: var(--radius-sm) !important;
-  transition: var(--transition) !important;
+  border-radius: 10px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .dash-stream-expiry:hover {
@@ -261,56 +238,51 @@ gap:15px!important;
 }
 
 .list-wrapper{
-background:linear-gradient(
-180deg,
-#0b1020,
-#090d18
-)!important;
-
+background: linear-gradient(180deg, rgba(11, 16, 32, 0.85) 0%, rgba(9, 13, 24, 0.85) 100%) !important;
+backdrop-filter: blur(24px) saturate(1.2) !important;
 border-radius:22px!important;
-border:1px solid rgba(255,255,255,.05)!important;
+border:1px solid rgba(255,255,255,.08)!important;
 overflow:hidden!important;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
 .list-header{
 background:rgba(255,255,255,.02)!important;
-border:none!important;
+border-bottom: 1px solid rgba(255,255,255,.05)!important;
 font-size:15px!important;
-font-weight:700!important;
+font-weight:800!important;
+text-transform: uppercase !important;
+letter-spacing: 0.5px !important;
 padding:18px!important;
+color: #fff !important;
 }
 
 .row{
-background:#111827!important;
+background: rgba(17, 24, 39, 0.75) !important;
 border:none!important;
 border-radius:16px!important;
 margin-bottom:10px!important;
 padding:14px 16px!important;
-transition:.25s!important;
+transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
 }
 
 .row:hover{
-transform:translateY(-2px);
-background:#172036!important;
-
-box-shadow:
-0 8px 25px rgba(0,0,0,.35)!important;
+transform:translateY(-2px) !important;
+background: rgba(23, 32, 54, 0.9) !important;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 0 8px 25px rgba(0,0,0,.35)!important;
 }
 
 .row.active{
-background:linear-gradient(
-135deg,
-rgba(239,68,68,.25),
-rgba(220,38,38,.12)
-)!important;
-
-outline:1px solid rgba(239,68,68,.35)!important;
+background: linear-gradient(90deg, rgba(239, 68, 68, 0.15) 0%, rgba(23, 32, 54, 0.4) 100%) !important;
+box-shadow: inset 4px 0 0 #ef4444, inset 0 0 0 1px rgba(239, 68, 68, 0.25), 0 8px 25px rgba(239, 68, 68, 0.05) !important;
+outline: none !important;
 }
 
 .ch-info span{
 font-size:16px!important;
 font-weight:700!important;
+color: #fff !important;
 }
 
 .ch-info small{
@@ -319,29 +291,45 @@ font-weight:600!important;
 }
 
 .event-card{
-background:#111827!important;
+background: rgba(17, 24, 39, 0.6) !important;
 border:none!important;
 border-left:4px solid #facc15!important;
 border-radius:16px!important;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
 }
 
 .epg-card{
-background:#111827!important;
+background: rgba(17, 24, 39, 0.6) !important;
 border:none!important;
 border-radius:16px!important;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
 }
 
 .grid-scroll::-webkit-scrollbar,
 .events-scroll::-webkit-scrollbar,
 .sidebar::-webkit-scrollbar{
 width:6px!important;
+height:6px!important;
 }
 
 .grid-scroll::-webkit-scrollbar-thumb,
 .events-scroll::-webkit-scrollbar-thumb,
 .sidebar::-webkit-scrollbar-thumb{
-background:#334155!important;
+background: rgba(255, 255, 255, 0.15) !important;
 border-radius:20px!important;
+transition: background 0.2s !important;
+}
+
+.grid-scroll::-webkit-scrollbar-thumb:hover,
+.events-scroll::-webkit-scrollbar-thumb:hover,
+.sidebar::-webkit-scrollbar-thumb:hover{
+background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.grid-scroll::-webkit-scrollbar-track,
+.events-scroll::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track{
+background: transparent !important;
 }
 
 `);
