@@ -83,7 +83,7 @@ html, body {
 }
 
 /* ══════════════════════════════════
-   SIDEBAR  —  logica di layout originale combinata con grafica blur
+   SIDEBAR  —  Ottimizzata Graficamente
 ═══════════════════════════════════ */
 .sidebar {
   width: 260px !important;
@@ -92,9 +92,15 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 22px !important;
   padding: 18px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   overflow-y: auto !important; /* Rende la sidebar scorrevole mantenendo cliccabili i link */
   overflow-x: hidden !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.sidebar:hover {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .sidebar::before {
@@ -102,8 +108,8 @@ html, body {
   position: absolute !important;
   inset: 0 !important;
   z-index: -1 !important;
-  background: rgba(17, 17, 21, 0.65) !important;
-  backdrop-filter: blur(24px) saturate(1.2) !important;
+  background: rgba(10, 10, 14, 0.75) !important; /* Leggermente più scura e trasparente per un effetto vetro migliore */
+  backdrop-filter: blur(24px) saturate(1.4) !important; /* Saturazione migliorata per il contrasto */
   border-radius: 20px !important;
   pointer-events: none !important;
 }
@@ -113,25 +119,92 @@ html, body {
   content: none !important;
 }
 
+/* Scrollbar personalizzata ultra-sottile per la sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 4px !important;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 99px !important;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
 /* ── OROLOGIO ── */
 .clock {
-  font-size: 44px !important;
+  font-size: 38px !important;
   font-weight: 800 !important;
-  letter-spacing: -1px !important;
+  letter-spacing: -1.5px !important;
   color: #fff !important;
+  background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  margin-bottom: 5px !important;
   text-align: center !important;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)) !important;
 }
 
-/* ── COUNTDOWN BOX ── */
-.countdown-box {
-  background: #0f172a !important;
-  border-radius: 18px !important;
+/* ── DATA sotto l'orologio ── */
+.clock + *,
+[class*="date"],
+[class*="day"] {
+  text-align: center !important;
+  font-size: 0.72rem !important;
+  font-family: var(--font-alt), sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--text-muted) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  margin-top: 0.2rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+/* ── SEPARATORE SFUMATO ── */
+.sidebar hr,
+.sidebar [class*="divider"],
+.sidebar [class*="separator"] {
   border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent) !important;
+  margin: 0 0 1.2rem !important;
 }
 
-/* ── ITEMS SIDEBAR  —  struttura layout originale con grafica del prima ── */
+/* ── COUNTDOWN BOX (Subscription/Expiry card) ── */
+.countdown-box {
+  text-align: center !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  padding: 0.8rem !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-subtle) !important;
+  margin: 0 0 2rem !important;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.01) !important;
+  transition: var(--transition) !important;
+}
+
+.countdown-box:hover {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ── TITOLO SEZIONE ── */
+[class*="section-title"],
+[class*="cat-title"],
+[class*="label"] {
+  font-size: 0.72rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 0.8rem !important;
+  padding-left: 0.5rem !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* ── ITEMS SIDEBAR  —  struttura layout originale con micro-animazioni ── */
 .item {
   background: transparent !important;
   border-radius: 14px !important;
@@ -143,6 +216,7 @@ html, body {
 .item:hover {
   background: rgba(255, 255, 255, 0.05) !important;
   transform: translateX(4px) !important;
+  color: var(--text-primary) !important;
 }
 
 .item.active {
@@ -156,6 +230,12 @@ html, body {
 .item i {
   color: #eab308 !important;
   margin-right: 8px !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.item:hover i {
+  color: var(--accent) !important;
+  transform: scale(1.15) !important;
 }
 
 .item.active i {
