@@ -83,42 +83,34 @@ html, body {
 }
 
 /* ══════════════════════════════════
-   SIDEBAR  —  identica a .dash-sidebar
+   SIDEBAR  —  identica a .dash-sidebar (con logica scorrimento e blur)
 ═══════════════════════════════════ */
 .sidebar {
   width: 260px !important;
-  background: rgba(17, 17, 21, 0.65) !important;
-  backdrop-filter: blur(24px) saturate(1.2) !important; /* Re-enabled glass blur */
+  position: relative !important;
+  background: transparent !important; /* Sfondo trasparente per far vedere il blur del prima */
   border-radius: var(--radius) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
   display: flex !important;
   flex-direction: column !important;
   padding: 1.5rem 1rem !important;
-  overflow: hidden !important; /* Back to original overflow hidden to avoid backdrop-filter hit-test bug */
-}
-
-/* Rendi la lista delle categorie scorrevole anziché l'intera sidebar per evitare il bug Chromium dei clic */
-.dash-cat-list, [class*="cat-list"] {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.4rem !important;
-  flex: 1 !important;
-  overflow-y: auto !important;
+  overflow-y: auto !important; /* Attiva lo scorrimento sulla barra laterale */
   overflow-x: hidden !important;
-  max-height: 50vh !important;
 }
 
-.dash-cat-list::-webkit-scrollbar, [class*="cat-list"]::-webkit-scrollbar {
-  width: 4px !important;
-}
-.dash-cat-list::-webkit-scrollbar-thumb, [class*="cat-list"]::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 99px !important;
+/* Pseudo-elemento per gestire il blur dello sfondo senza rompere il click in Chromium */
+.sidebar::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background: rgba(17, 17, 21, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  border-radius: calc(var(--radius) - 1px) !important;
+  pointer-events: none !important;
 }
 
-/* rimuove qualsiasi pseudo-elemento precedente */
-.sidebar::before,
 .sidebar::after {
   display: none !important;
   content: none !important;
