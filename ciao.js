@@ -89,18 +89,20 @@ html, body {
   width: 260px !important;
   position: relative !important;
   background: transparent !important; /* Trasparente per far trasparire il blur di ::before */
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 22px !important;
-  padding: 18px !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-  overflow-y: auto !important; /* Rende la sidebar scorrevole mantenendo cliccabili i link */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 24px !important;
+  padding: 20px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  overflow-y: auto !important;
   overflow-x: hidden !important;
   transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .sidebar:hover {
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.15) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 
+              0 0 30px rgba(239, 68, 68, 0.04), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 .sidebar::before {
@@ -108,9 +110,9 @@ html, body {
   position: absolute !important;
   inset: 0 !important;
   z-index: -1 !important;
-  background: rgba(10, 10, 14, 0.75) !important; /* Leggermente più scura e trasparente per un effetto vetro migliore */
-  backdrop-filter: blur(24px) saturate(1.4) !important; /* Saturazione migliorata per il contrasto */
-  border-radius: 20px !important;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(10, 10, 14, 0.92) 100%) !important;
+  backdrop-filter: blur(28px) saturate(1.5) !important;
+  border-radius: 22px !important;
   pointer-events: none !important;
 }
 
@@ -133,17 +135,18 @@ html, body {
 
 /* ── OROLOGIO ── */
 .clock {
+  font-family: var(--font-main), sans-serif !important;
   font-size: 38px !important;
-  font-weight: 800 !important;
-  letter-spacing: -1.5px !important;
+  font-weight: 900 !important;
+  letter-spacing: -1.8px !important;
   color: #fff !important;
-  background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  margin-top: 15px !important;
-  margin-bottom: 5px !important;
+  margin-top: 10px !important;
+  margin-bottom: 2px !important;
   text-align: center !important;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)) !important;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)) !important;
 }
 
 /* ── DATA sotto l'orologio ── */
@@ -151,13 +154,13 @@ html, body {
 [class*="date"],
 [class*="day"] {
   text-align: center !important;
-  font-size: 0.72rem !important;
+  font-size: 10px !important;
   font-family: var(--font-alt), sans-serif !important;
-  font-weight: 700 !important;
-  color: var(--text-muted) !important;
+  font-weight: 800 !important;
+  color: rgba(255, 255, 255, 0.4) !important;
   text-transform: uppercase !important;
-  letter-spacing: 1.5px !important;
-  margin-top: 0.2rem !important;
+  letter-spacing: 2px !important;
+  margin-top: 0.1rem !important;
   margin-bottom: 1.2rem !important;
 }
 
@@ -167,27 +170,28 @@ html, body {
 .sidebar [class*="separator"] {
   border: none !important;
   height: 1px !important;
-  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent) !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent) !important;
   margin: 0 0 1.2rem !important;
 }
 
 /* ── COUNTDOWN BOX (Subscription/Expiry card) ── */
 .countdown-box {
   text-align: center !important;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
-  padding: 0.8rem !important;
-  border-radius: var(--radius-sm) !important;
-  border: 1px solid rgba(239, 68, 68, 0.15) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(15, 23, 42, 0.75) 100%) !important;
+  padding: 1rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
   border-left: 4px solid var(--accent) !important;
-  margin: 0 0 2rem !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+  margin: 0 0 1.8rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   transition: var(--transition) !important;
 }
 
 .countdown-box:hover {
-  border-color: rgba(239, 68, 68, 0.3) !important;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%) !important;
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+  box-shadow: 0 12px 32px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-2px) !important;
 }
 
 .countdown-box,
@@ -201,10 +205,12 @@ html, body {
 [class*="section-title"],
 [class*="cat-title"],
 [class*="label"] {
-  font-size: 0.72rem !important;
+  font-family: var(--font-alt), sans-serif !important;
+  font-size: 11px !important;
   color: var(--text-muted) !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.8px !important;
+  margin-top: 1.4rem !important;
   margin-bottom: 0.8rem !important;
   padding-left: 0.5rem !important;
   text-transform: uppercase !important;
@@ -216,7 +222,7 @@ html, body {
 /* ── ITEMS SIDEBAR  —  struttura layout originale con micro-animazioni ── */
 .item {
   background: transparent !important;
-  border-radius: 14px !important;
+  border-radius: 12px !important;
   margin-bottom: 6px !important;
   transition: var(--transition) !important;
   font-weight: 600 !important;
@@ -229,26 +235,30 @@ html, body {
 }
 
 .item.active {
-  background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%) !important;
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%) !important;
   color: #fff !important;
   font-weight: 700 !important;
-  box-shadow: 0 4px 15px var(--accent-glow) !important;
+  box-shadow: 0 4px 15px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
   border: none !important;
+  transform: translateX(4px) scale(1.01) !important;
 }
 
 .item i {
   color: #eab308 !important;
   margin-right: 8px !important;
   transition: transform 0.2s ease, color 0.2s ease !important;
+  filter: drop-shadow(0 0 2px rgba(234, 179, 8, 0.35)) !important;
 }
 
 .item:hover i {
   color: var(--accent) !important;
   transform: scale(1.15) !important;
+  filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.5)) !important;
 }
 
 .item.active i {
   color: #fff !important;
+  filter: none !important;
 }
 
 /* ── PLAYER ROW ── */
@@ -411,7 +421,7 @@ html, body {
 .dash-info-now-box span[style*="color: rgb(0, 230, 118)"],
 .dash-info-now-box span[style*="color:#00e676"] !important,
 .dash-info-now-box span[style*="color: rgb(0, 230, 118)"] !important {
-  color: #ef4444 !important;
+  color: #fff !important; /* Made white as requested */
   background: rgba(239, 68, 68, 0.15) !important;
   border-color: rgba(239, 68, 68, 0.3) !important;
   font-weight: 800 !important;
