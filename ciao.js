@@ -11,9 +11,10 @@
 
 GM_addStyle(`
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root{
+/* Original userscript variables */
 --bg:#060912;
 --card:#0b1020;
 --card2:#111827;
@@ -23,13 +24,34 @@ GM_addStyle(`
 --cyan:#00e5ff;
 --text:#ffffff;
 --muted:#94a3b8;
+
+/* Overriding style.css premium variables to apply the red dashboard theme across the site */
+--bg-base:              #020617;
+--bg-surface:           #0f172a;
+--bg-card:              #1e293b;
+--bg-hover:             #334155;
+--border-subtle:        rgba(255, 255, 255, .05);
+--border-strong:        rgba(255, 255, 255, .15);
+--accent:               #ef4444; /* Accento rosso dal CSS del cruscotto */
+--accent-glow:          rgba(239, 68, 68, .28);
+--accent2:              #b91c1c; /* Secondo colore rosso scuro per gradiente */
+--danger:               #f43f5e;
+--text-primary:         #f8fafc;
+--text-secondary:       #94a3b8;
+--text-muted:           #64748b;
+--font-main:            'Outfit', sans-serif;
+--font-alt:             'Inter', sans-serif;
+--radius:               16px;
+--radius-sm:            10px;
+--radius-lg:            24px;
+--transition:           all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html,
 body{
 background: #020617 !important;
-background-image: radial-gradient(circle at top right, rgba(15, 23, 42, 0.4) 0%, transparent 45%),
-                  radial-gradient(circle at bottom left, rgba(2, 6, 23, 0.7) 0%, transparent 45%) !important;
+background-image: radial-gradient(circle at top right, rgba(15, 23, 42, 0.45) 0%, transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(2, 6, 23, 0.75) 0%, transparent 45%) !important;
 font-family:'Outfit',sans-serif!important;
 overflow:hidden;
 }
@@ -37,22 +59,30 @@ overflow:hidden;
 .app{
 padding:15px!important;
 gap:15px!important;
-background:transparent!important; /* Transparent to let body gradients show */
+background:transparent!important; /* Transparent background to allow radial body gradient */
 }
 
 .sidebar{
 width:260px!important;
-background:linear-gradient(
-180deg,
-#090d18,
-#050811
-)!important;
+position: relative !important;
+background: transparent !important;
 border:1px solid rgba(255,255,255,.08)!important;
 border-radius:22px!important;
 padding:18px!important;
 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
 overflow-y: auto !important;
 overflow-x: hidden !important;
+}
+
+.sidebar::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background: rgba(17, 17, 21, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  border-radius: 20px !important;
+  pointer-events: none !important;
 }
 
 .clock{
@@ -63,7 +93,7 @@ color:#fff!important;
 margin-top:15px!important;
 margin-bottom:15px!important;
 text-align:center!important;
-text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+text-shadow: 0 0 12px rgba(255, 255, 255, 0.12) !important;
 }
 
 .countdown-box{
