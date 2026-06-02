@@ -174,18 +174,27 @@ html, body {
 /* ── COUNTDOWN BOX (Subscription/Expiry card) ── */
 .countdown-box {
   text-align: center !important;
-  background: rgba(255, 255, 255, 0.02) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
   padding: 0.8rem !important;
   border-radius: var(--radius-sm) !important;
-  border: 1px solid var(--border-subtle) !important;
+  border: 1px solid rgba(239, 68, 68, 0.15) !important;
+  border-left: 4px solid var(--accent) !important;
   margin: 0 0 2rem !important;
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.01) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
   transition: var(--transition) !important;
 }
 
 .countdown-box:hover {
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(15, 23, 42, 0.7) 100%) !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.countdown-box,
+.countdown-box * {
+  font-family: var(--font-alt), sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
 }
 
 /* ── TITOLO SEZIONE ── */
@@ -364,29 +373,46 @@ html, body {
 
 .dash-stream-expiry {
   margin-top: 20px !important;
-  border-left: 4px solid #ef4444 !important;
-  background: rgba(239, 68, 68, 0.03) !important;
-  border: 1px solid rgba(239, 68, 68, 0.1) !important;
-  padding: 1rem !important;
+  border-left: 4px solid var(--accent) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(185, 28, 28, 0.02) 100%) !important;
+  border: 1px solid rgba(239, 68, 68, 0.15) !important;
+  padding: 1.2rem !important;
   border-radius: var(--radius-sm) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
   transition: var(--transition) !important;
 }
 
 .dash-stream-expiry:hover {
-  background: rgba(239, 68, 68, 0.05) !important;
-  border-color: rgba(239, 68, 68, 0.2) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(185, 28, 28, 0.04) 100%) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  border-left-color: var(--accent) !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
 }
 
 .dash-stream-expiry-title {
-  font-size: 0.9rem !important;
+  font-size: 0.85rem !important;
   font-weight: 800 !important;
-  color: #ef4444 !important;
+  color: var(--accent) !important;
   margin-bottom: 0.5rem !important;
   display: flex !important;
   align-items: center !important;
   gap: 0.5rem !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.2) !important;
+}
+
+.dash-stream-expiry-desc {
+  font-size: 0.8rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+
+.dash-stream-expiry-desc i {
+  color: #3b82f6 !important;
+  margin-right: 6px !important;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3) !important;
 }
 
 /* ── LISTS CONTAINER ── */
