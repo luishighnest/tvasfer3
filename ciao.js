@@ -85,8 +85,8 @@ html, body {
 ═══════════════════════════════════ */
 .sidebar {
   width: 260px !important;
-  background: rgba(17, 17, 21, 0.75) !important;
-  backdrop-filter: blur(24px) saturate(1.2) !important;
+  background: rgba(17, 17, 21, 0.98) !important; /* Semi-opaque background to avoid Chromium click bug */
+  backdrop-filter: none !important;
   border-radius: var(--radius) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
