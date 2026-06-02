@@ -85,8 +85,7 @@ html, body {
 ═══════════════════════════════════ */
 .sidebar {
   width: 260px !important;
-  background: rgba(17, 17, 21, 0.65) !important;
-  backdrop-filter: blur(24px) saturate(1.2) !important;
+  background: rgba(17, 17, 21, 0.98) !important;
   border-radius: var(--radius) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
@@ -95,8 +94,6 @@ html, body {
   padding: 1.5rem 1rem !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  will-change: transform, opacity !important;
 }
 
 /* Scrollbar minimale per la sidebar */
@@ -208,10 +205,7 @@ html, body {
   overflow: visible !important;
   position: static !important;
   pointer-events: auto !important;
-}
-
-.item * {
-  pointer-events: none !important;
+  z-index: 10 !important;
 }
 
 .item i {
@@ -275,30 +269,134 @@ html, body {
 
 /* ── DETAILS CARD (identico a .dash-info-card) ── */
 .details {
-  background: rgba(17, 17, 21, 0.65) !important;
+  background: rgba(17, 17, 21, 0.7) !important;
   border-radius: var(--radius) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 1.5rem !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(24px) saturate(1.2) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.details:hover {
+  border-color: rgba(239, 68, 68, 0.2) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 #cur-name {
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
   font-weight: 900 !important;
-  margin-bottom: 0.5rem !important;
-  color: var(--text-primary) !important;
-  background: none !important;
-  -webkit-text-fill-color: var(--text-primary) !important;
-  letter-spacing: -1px !important;
+  margin-bottom: 0.8rem !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  letter-spacing: -1.5px !important;
   text-transform: uppercase !important;
   line-height: 1.1 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 #cur-info {
   color: var(--text-secondary) !important;
   font-size: 0.95rem !important;
   line-height: 1.6 !important;
+}
+
+/* Premium styling overrides inside details card (now & next boxes) */
+.dash-info-now-box {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(185, 28, 28, 0.03) 100%) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 1.2rem !important;
+  margin-bottom: 0.8rem !important;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.05) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: var(--transition) !important;
+}
+
+.dash-info-now-box::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; width: 4px !important; height: 100% !important;
+  background: linear-gradient(180deg, #ef4444, #b91c1c) !important;
+}
+
+.dash-info-now-box:hover {
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Green Live badge/indicators in details card now-box replaced with Red */
+.dash-info-now-box span[style*="color:#00e676"],
+.dash-info-now-box span[style*="color: rgb(0, 230, 118)"] {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+.dash-info-now-box span[style*="background:#00e676"],
+.dash-info-now-box span[style*="background: rgb(0, 230, 118)"] {
+  background: #ef4444 !important;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Progress bar inside details now-box */
+.dash-info-now-box div[style*="background:linear-gradient"],
+.dash-info-now-box div[style*="background: linear-gradient"] {
+  background: linear-gradient(90deg, #ef4444, #b91c1c) !important;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5) !important;
+}
+
+.dash-info-next-box {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 1.2rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: var(--transition) !important;
+}
+
+.dash-info-next-box::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; width: 4px !important; height: 100% !important;
+  background: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dash-info-next-box:hover {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  transform: translateY(-1px) !important;
+}
+
+.dash-stream-expiry {
+  margin-top: 20px !important;
+  border-left: 4px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.03) !important;
+  border: 1px solid rgba(239, 68, 68, 0.1) !important;
+  padding: 1rem !important;
+  border-radius: var(--radius-sm) !important;
+  transition: var(--transition) !important;
+}
+
+.dash-stream-expiry:hover {
+  background: rgba(239, 68, 68, 0.05) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.dash-stream-expiry-title {
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  color: #ef4444 !important;
+  margin-bottom: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* ── LISTS CONTAINER ── */
