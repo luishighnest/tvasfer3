@@ -77,29 +77,26 @@ html, body {
 .app {
   padding: 15px !important;
   gap: 15px !important;
-  background: #0a0a0a !important; /* Keep background opaque to prevent browser hit-test anomalies */
+  background: #0a0a0a !important;
   background-image: radial-gradient(circle at top right, rgba(15, 23, 42, 0.5) 0%, transparent 40%),
                     radial-gradient(circle at bottom left, rgba(2, 6, 23, 0.8) 0%, transparent 40%) !important;
 }
 
 /* ══════════════════════════════════
-   SIDEBAR  —  identica a .dash-sidebar (con logica scorrimento e blur)
+   SIDEBAR  —  logica di layout originale combinata con grafica blur
 ═══════════════════════════════════ */
 .sidebar {
   width: 260px !important;
   position: relative !important;
-  background: transparent !important; /* Sfondo trasparente per far vedere il blur del prima */
-  border-radius: var(--radius) !important;
+  background: transparent !important; /* Trasparente per far trasparire il blur di ::before */
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 22px !important;
+  padding: 18px !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  padding: 1.5rem 1rem !important;
-  overflow-y: auto !important; /* Attiva lo scorrimento sulla barra laterale */
+  overflow-y: auto !important; /* Rende la sidebar scorrevole mantenendo cliccabili i link */
   overflow-x: hidden !important;
 }
 
-/* Pseudo-elemento per gestire il blur dello sfondo senza rompere il click in Chromium */
 .sidebar::before {
   content: '' !important;
   position: absolute !important;
@@ -107,7 +104,7 @@ html, body {
   z-index: -1 !important;
   background: rgba(17, 17, 21, 0.65) !important;
   backdrop-filter: blur(24px) saturate(1.2) !important;
-  border-radius: calc(var(--radius) - 1px) !important;
+  border-radius: 20px !important;
   pointer-events: none !important;
 }
 
@@ -116,162 +113,79 @@ html, body {
   content: none !important;
 }
 
-/* ── OROLOGIO (identico a .dash-clock) ── */
+/* ── OROLOGIO ── */
 .clock {
-  text-align: center !important;
-  font-size: 1.6rem !important;
-  font-family: var(--font-alt), sans-serif !important;
+  font-size: 44px !important;
   font-weight: 800 !important;
-  color: var(--text-primary) !important;
-  letter-spacing: 1px !important;
-  line-height: 1 !important;
-  background: none !important;
-  -webkit-text-fill-color: var(--text-primary) !important;
-  filter: none !important;
-  margin: 0 0 .3rem !important;
-}
-
-/* ── DATA sotto l'orologio (identico a .dash-clock-date) ── */
-.clock + *,
-[class*="date"],
-[class*="day"] {
+  letter-spacing: -1px !important;
+  color: #fff !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
   text-align: center !important;
-  font-size: 0.75rem !important;
-  font-family: var(--font-alt), sans-serif !important;
-  font-weight: 600 !important;
-  color: var(--text-muted) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  margin-top: 0.3rem !important;
-  margin-bottom: 1rem !important;
 }
 
-/* ── SEPARATORE (identico a .dash-clock-divider) ── */
-.sidebar hr,
-.sidebar [class*="divider"],
-.sidebar [class*="separator"] {
-  border: none !important;
-  height: 1px !important;
-  background: var(--border-subtle) !important;
-  margin: 0 0 1.2rem !important;
-}
-
-/* ── COUNTDOWN BOX (identico a .dash-sub) ── */
+/* ── COUNTDOWN BOX ── */
 .countdown-box {
-  text-align: center !important;
-  background: #1a1a20 !important;
-  padding: 0.8rem !important;
-  border-radius: var(--radius-sm) !important;
-  border: 1px solid var(--border-subtle) !important;
-  margin: 0 0 2rem !important;
-  box-shadow: none !important;
-}
-
-/* ── TITOLO SEZIONE (identico a .dash-cat-title) ── */
-[class*="section-title"],
-[class*="cat-title"],
-[class*="label"] {
-  font-size: 0.72rem !important;
-  color: var(--text-muted) !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px !important;
-  margin-bottom: 0.8rem !important;
-  padding-left: 0.5rem !important;
-  text-transform: uppercase !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-}
-
-/* ══════════════════════════════════
-   ITEMS SIDEBAR  —  identici a .dash-cat-item
-═══════════════════════════════════ */
-.item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.8rem !important;
-  padding: 0.8rem 1rem !important;
-  border-radius: var(--radius-sm) !important;
-  color: var(--text-secondary) !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  cursor: pointer !important;
-  transition: var(--transition) !important;
-  text-decoration: none !important;
+  background: #0f172a !important;
+  border-radius: 18px !important;
   border: none !important;
+}
+
+/* ── ITEMS SIDEBAR  —  struttura layout originale con grafica del prima ── */
+.item {
   background: transparent !important;
-  transform: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  position: static !important;
-}
-
-.item i {
-  font-size: 1.2rem !important;
-  color: #eab308 !important;
+  border-radius: 14px !important;
+  margin-bottom: 6px !important;
   transition: var(--transition) !important;
-}
-
-/* rimuove pseudo-elementi shimmer */
-.item::before,
-.item::after {
-  display: none !important;
-  content: none !important;
+  font-weight: 600 !important;
 }
 
 .item:hover {
   background: rgba(255, 255, 255, 0.05) !important;
-  color: var(--text-primary) !important;
-  transform: none !important;
-  border: none !important;
-  box-shadow: none !important;
+  transform: translateX(4px) !important;
 }
 
-/* item attivo — identico a .dash-cat-item.active (con gradient rosso e ombra premium) */
 .item.active {
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%) !important;
   color: #fff !important;
   font-weight: 700 !important;
   box-shadow: 0 4px 15px var(--accent-glow) !important;
   border: none !important;
-  transform: none !important;
+}
+
+.item i {
+  color: #eab308 !important;
+  margin-right: 8px !important;
 }
 
 .item.active i {
   color: #fff !important;
 }
 
-.item.active::before,
-.item.active::after {
-  display: none !important;
-  content: none !important;
-}
-
 /* ── PLAYER ROW ── */
 .player-row {
   display: grid !important;
   grid-template-columns: 2fr 1.1fr !important;
-  gap: 14px !important;
-  height: 355px !important;
+  gap: 15px !important;
+  height: 360px !important;
 }
 
 /* ── VIDEO PIP ── */
 .pip {
   background: #000 !important;
-  border-radius: var(--radius) !important;
+  border-radius: 22px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
-  position: relative !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 10px 40px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* ── DETAILS CARD (identico a .dash-info-card) ── */
+/* ── DETAILS CARD ── */
 .details {
-  background: rgba(17, 17, 21, 0.7) !important;
-  border-radius: var(--radius) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 1.5rem !important;
+  background: linear-gradient(180deg, #0b1020, #090d18) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 22px !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(24px) saturate(1.2) !important;
   transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
@@ -283,14 +197,14 @@ html, body {
 }
 
 #cur-name {
-  font-size: 1.8rem !important;
-  font-weight: 900 !important;
-  margin-bottom: 0.8rem !important;
+  font-size: 38px !important;
+  font-weight: 800 !important;
+  margin-bottom: 15px !important;
   color: #fff !important;
   background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  letter-spacing: -1px !important;
+  letter-spacing: -1.5px !important;
   text-transform: uppercase !important;
   line-height: 1.1 !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
@@ -298,8 +212,7 @@ html, body {
 
 #cur-info {
   color: var(--text-secondary) !important;
-  font-size: 0.95rem !important;
-  line-height: 1.6 !important;
+  font-size: 15px !important;
 }
 
 /* Premium styling overrides inside details card (now & next boxes) */
@@ -325,7 +238,6 @@ html, body {
 .dash-info-now-box:hover {
   border-color: rgba(239, 68, 68, 0.4) !important;
   box-shadow: 0 8px 30px rgba(239, 68, 68, 0.1) !important;
-  transform: translateY(-1px) !important;
 }
 
 /* Green Live badge/indicators in details card now-box replaced with Red */
@@ -368,7 +280,6 @@ html, body {
 .dash-info-next-box:hover {
   border-color: rgba(255, 255, 255, 0.1) !important;
   background: rgba(255, 255, 255, 0.03) !important;
-  transform: translateY(-1px) !important;
 }
 
 .dash-stream-expiry {
@@ -400,14 +311,14 @@ html, body {
 
 /* ── LISTS CONTAINER ── */
 .lists-container {
-  gap: 14px !important;
+  gap: 15px !important;
 }
 
-/* ── LIST WRAPPER (identico a .dash-info-card) ── */
+/* ── LIST WRAPPER ── */
 .list-wrapper {
-  background: rgba(17, 17, 21, 0.65) !important;
-  border-radius: var(--radius) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: linear-gradient(180deg, #0b1020, #090d18) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   overflow: hidden !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(24px) saturate(1.2) !important;
@@ -421,48 +332,42 @@ html, body {
   font-weight: 700 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-  padding: 1rem 1.2rem !important;
+  padding: 18px !important;
   color: var(--text-muted) !important;
 }
 
-/* ── ROWS (identici a .ch-row) ── */
+/* ── ROWS  —  struttura layout originale con grafica del prima ── */
 .row {
-  display: flex !important;
-  align-items: center !important;
-  gap: 1.2rem !important;
-  padding: .8rem 1rem !important;
-  background: transparent !important;
-  border: 1px solid transparent !important;
-  border-radius: var(--radius-sm) !important;
-  margin-bottom: 4px !important;
+  border: none !important;
+  border-radius: 16px !important;
+  margin-bottom: 10px !important;
+  padding: 14px 16px !important;
   transition: background .15s ease, border-color .15s ease !important;
+  background: transparent !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02) !important;
 }
 
 .row:hover {
   background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  transform: none !important;
-  box-shadow: none !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-2px) !important;
 }
 
 .row.active {
-  border-left: 4px solid var(--accent) !important;
   background: rgba(239, 68, 68, 0.05) !important;
-  border-color: var(--accent-glow) !important;
-  box-shadow: none !important;
+  box-shadow: inset 4px 0 0 var(--accent), inset 0 0 0 1px var(--accent-glow) !important;
   transform: none !important;
 }
 
 /* ── CHANNEL INFO ── */
 .ch-info span {
-  font-size: 1rem !important;
+  font-size: 16px !important;
   font-weight: 700 !important;
   color: var(--text-primary) !important;
 }
 
 .ch-info small {
-  font-size: .75rem !important;
-  color: var(--accent) !important;
+  color: #38bdf8 !important;
   font-weight: 600 !important;
 }
 
@@ -470,8 +375,8 @@ html, body {
 .event-card {
   background: transparent !important;
   border: 1px solid rgba(234, 179, 8, 0.15) !important;
-  border-left: 3px solid var(--gold) !important;
-  border-radius: var(--radius-sm) !important;
+  border-left: 4px solid var(--gold) !important;
+  border-radius: 16px !important;
   box-shadow: none !important;
   transition: background .15s ease !important;
 }
@@ -479,14 +384,13 @@ html, body {
 .event-card:hover {
   background: rgba(234, 179, 8, 0.05) !important;
   border-color: rgba(234, 179, 8, 0.25) !important;
-  box-shadow: none !important;
 }
 
 /* ── EPG CARD ── */
 .epg-card {
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
-  border-radius: var(--radius-sm) !important;
+  border-radius: 16px !important;
   transition: background .15s ease, border-color .15s ease !important;
 }
 
