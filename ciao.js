@@ -93,9 +93,22 @@ html, body {
   display: flex !important;
   flex-direction: column !important;
   padding: 1.5rem 1rem !important;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform, opacity !important;
+}
+
+/* Scrollbar minimale per la sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 4px !important;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 99px !important;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 
 /* rimuove qualsiasi pseudo-elemento precedente */
@@ -194,6 +207,11 @@ html, body {
   margin: 0 !important;
   overflow: visible !important;
   position: static !important;
+  pointer-events: auto !important;
+}
+
+.item * {
+  pointer-events: none !important;
 }
 
 .item i {
