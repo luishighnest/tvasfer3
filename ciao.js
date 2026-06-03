@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pepperstream PZ8 Enhanced
 // @namespace    pz8
-// @version      2.0
+// @version      2.1
 // @match        https://pepperstream.xyz/*
 // @match        https://*.chilistream.net/*
 // @match        https://*.mediahosting.space/*
@@ -525,7 +525,6 @@ html, body {
 
 /* ── SUBSCRIPTION EXPIRY BOX ── */
 .dash-stream-expiry {
-  margin-top: 18px !important;
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(30, 41, 59, 0.3) 50%, rgba(15, 23, 42, 0.7) 100%) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-left: 4px solid var(--accent) !important;
@@ -533,9 +532,18 @@ html, body {
   border-radius: 16px !important;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
   transition: var(--transition) !important;
-  display: flex !important;
   flex-direction: column !important;
   gap: 8px !important;
+}
+
+.dash-stream-expiry.hidden-expiry {
+  display: none !important;
+}
+
+.dash-stream-expiry.show-expiry {
+  display: flex !important;
+  margin-top: 14px !important;
+  animation: fadeIn 0.3s ease-in-out !important;
 }
 
 .dash-stream-expiry:hover {
@@ -544,6 +552,50 @@ html, body {
   border-left-color: #f87171 !important; /* brighter red accent */
   box-shadow: 0 16px 36px rgba(239, 68, 68, 0.08), 0 12px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   transform: translateY(-2px) !important;
+}
+
+/* ── STREAM INFO TOGGLE BUTTON ── */
+.stream-info-toggle-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
+  color: var(--text-secondary) !important;
+  font-family: var(--font-alt), sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: var(--transition) !important;
+  margin-top: 15px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+}
+
+.stream-info-toggle-btn:hover {
+  background: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.stream-info-toggle-btn.active {
+  background: linear-gradient(90deg, #ef4444 0%, #b91c1c 100%) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px var(--accent-glow) !important;
+}
+
+.stream-info-toggle-btn i {
+  font-size: 14px !important;
+  transition: transform 0.2s ease !important;
+}
+
+.stream-info-toggle-btn:hover i {
+  transform: scale(1.1) !important;
 }
 
 .dash-stream-expiry-title {
@@ -877,6 +929,458 @@ a[href*="chilistream"],
 a[href*="t.me"] {
   display: none !important;
 }
+
+/* ── CANALI LIVE PANEL & ROWS (IMPROVED GRAPHICS) ── */
+.dash-panel {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.42) 0%, rgba(8, 8, 12, 0.58) 100%) !important;
+  backdrop-filter: blur(28px) saturate(1.4) !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid rgba(255, 255, 255, 0.055) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.dash-panel:hover {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.dash-panel-header {
+  padding: 1.15rem 1.5rem !important;
+  font-family: var(--font-main) !important;
+  font-weight: 800 !important;
+  font-size: 0.88rem !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+  letter-spacing: 1.2px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.002) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.dash-panel-header.live {
+  color: #ff4a4a !important;
+  text-shadow: 0 0 12px rgba(255, 74, 74, 0.3) !important;
+}
+
+.dash-panel-header.agenda {
+  color: #f59e0b !important;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.25) !important;
+}
+
+.dash-panel-header.guide {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.25) !important;
+}
+
+.dash-panel-header .dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  position: relative !important;
+}
+
+.dash-panel-header.live .dot {
+  background: #ff4a4a !important;
+  box-shadow: 0 0 8px rgba(255, 74, 74, 0.8) !important;
+}
+.dash-panel-header.live .dot::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: -4px !important;
+  border-radius: 50% !important;
+  border: 2px solid #ff4a4a !important;
+  animation: pulse-live 1.8s infinite ease-in-out !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.dash-panel-header.agenda .dot {
+  background: #f59e0b !important;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6) !important;
+}
+
+.dash-panel-header.guide .dot {
+  background: #38bdf8 !important;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6) !important;
+}
+
+.dash-panel-content {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.dash-panel-content::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.dash-panel-content::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.dash-panel-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 99px !important;
+  transition: all 0.2s ease !important;
+}
+.dash-panel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Unified Layout Row */
+.dash-ch-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.2rem !important;
+  padding: 0.85rem 1.25rem !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  cursor: pointer !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: rgba(15, 23, 42, 0.24) !important;
+  margin-bottom: 0.35rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.01) !important;
+  /* SAFE FOR CLICKS: position is not changed (remains static as original) */
+  /* SAFE FOR CLICKS: no overlays or pseudo-elements to block mouse events */
+}
+
+.dash-ch-row:hover {
+  background: linear-gradient(90deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.35) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  box-shadow: inset 3.5px 0 0 var(--ch-hover-accent, #444), 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+  transform: translateX(4px) !important;
+}
+
+.dash-ch-row.active {
+  border-color: color-mix(in srgb, var(--ch-hover-accent, #ef4444) 40%, rgba(255, 255, 255, 0.08)) !important;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ch-hover-accent, #ef4444) 10%, rgba(15, 23, 42, 0.3)) 0%, rgba(15, 23, 42, 0.65) 100%) !important;
+  box-shadow: inset 4.5px 0 0 var(--ch-hover-accent, #ef4444), 0 0 25px color-mix(in srgb, var(--ch-hover-accent, #ef4444) 15%, transparent) !important;
+}
+
+.dash-ch-name {
+  font-family: var(--font-main) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  transition: color 0.2s ease !important;
+}
+
+.dash-ch-row:hover .dash-ch-name,
+.dash-ch-row.active .dash-ch-name {
+  color: #fff !important;
+}
+
+.dash-ch-cat {
+  font-family: var(--font-alt) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: var(--text-muted) !important;
+  transition: color 0.2s ease !important;
+}
+
+.dash-ch-row:hover .dash-ch-cat {
+  color: var(--text-secondary) !important;
+}
+
+.dash-ch-live-badge {
+  font-family: var(--font-alt) !important;
+  font-size: 0.65rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  background: color-mix(in srgb, var(--ch-hover-accent, #ef4444) 12%, transparent) !important;
+  color: var(--ch-hover-accent, #ef4444) !important;
+  border: 1px solid color-mix(in srgb, var(--ch-hover-accent, #ef4444) 25%, transparent) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  /* NO display override to stay fully compatible with EPG scripts */
+  flex-shrink: 0 !important;
+}
+
+.dash-ch-live-badge::before {
+  content: '' !important;
+  width: 5px !important;
+  height: 5px !important;
+  background: var(--ch-hover-accent, #ef4444) !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  animation: pulse-live 1.5s infinite ease-in-out !important;
+  margin-right: 5px !important;
+  pointer-events: none !important; /* Prevents catching clicks */
+}
+
+.dash-ch-num {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--font-alt) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  color: var(--text-muted) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+}
+
+.dash-ch-row:hover .dash-ch-num {
+  color: var(--text-primary) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.dash-ch-row.active .dash-ch-num {
+  color: var(--ch-hover-accent, #ef4444) !important;
+  background: color-mix(in srgb, var(--ch-hover-accent, #ef4444) 15%, rgba(255, 255, 255, 0.02)) !important;
+  border-color: color-mix(in srgb, var(--ch-hover-accent, #ef4444) 35%, transparent) !important;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--ch-hover-accent, #ef4444) 15%, transparent) !important;
+}
+
+.dash-ch-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.05rem !important;
+  flex-shrink: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: color-mix(in srgb, var(--ch-hover-accent, #fff) 6%, rgba(255, 255, 255, 0.01)) !important;
+  color: color-mix(in srgb, var(--ch-hover-accent, #fff) 85%, #94a3b8) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dash-ch-row:hover .dash-ch-icon {
+  transform: scale(1.1) rotate(-3deg) !important;
+  border-color: color-mix(in srgb, var(--ch-hover-accent, #fff) 30%, transparent) !important;
+  color: var(--ch-hover-accent, #fff) !important;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--ch-hover-accent, #fff) 15%, transparent) !important;
+}
+
+.dash-ch-row.active .dash-ch-icon {
+  border-color: color-mix(in srgb, var(--ch-hover-accent, #fff) 45%, transparent) !important;
+  background: color-mix(in srgb, var(--ch-hover-accent, #fff) 15%, transparent) !important;
+  color: #fff !important;
+}
+
+.dash-ch-col-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.2rem !important;
+}
+
+.dash-ch-col-epg {
+  flex: 1.5 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  padding: 0 1rem !important;
+}
+
+.dash-ch-col-epg span {
+  font-family: var(--font-main) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  opacity: 0.9 !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-ch-row:hover .dash-ch-col-epg span {
+  opacity: 1 !important;
+}
+
+.dash-ch-col-epg span[style*="opacity:0.5"] {
+  opacity: 0.6 !important;
+  font-size: 0.78rem !important;
+  font-family: var(--font-alt) !important;
+  color: var(--text-secondary) !important;
+}
+
+.dash-ch-col-next {
+  width: 28% !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.25rem !important;
+  border-left: 1px solid var(--border-subtle) !important;
+  padding-left: 1.25rem !important;
+}
+
+.dash-ch-col-next div {
+  font-family: var(--font-alt) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.dash-ch-row:hover .dash-ch-col-next div {
+  color: var(--text-secondary) !important;
+}
+
+.dash-ch-col-epg div[style*="height:4px"],
+.dash-ch-col-epg div[style*="height: 4px"] {
+  height: 5px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 99px !important;
+  margin-top: 4px !important;
+  overflow: hidden !important;
+}
+
+.dash-ch-col-epg div[style*="background:linear-gradient"],
+.dash-ch-col-epg div[style*="background: linear-gradient"] {
+  height: 5px !important;
+  background: linear-gradient(90deg, var(--ch-hover-accent, #ef4444), color-mix(in srgb, var(--ch-hover-accent, #ef4444) 60%, #fff)) !important;
+  border-radius: 99px !important;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--ch-hover-accent, #ef4444) 50%, transparent) !important;
+}
+
+.dash-ch-row:hover .dash-ch-col-epg div[style*="background:linear-gradient"],
+.dash-ch-row:hover .dash-ch-col-epg div[style*="background: linear-gradient"] {
+  filter: brightness(1.2) !important;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ch-hover-accent, #ef4444) 70%, transparent) !important;
+}
+
+.dash-ch-col-next span[style*="background:rgba(96,165,250,0.1)"],
+.dash-ch-col-next span[style*="background: rgba(96, 165, 250, 0.1)"] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 4px !important;
+  font-size: 0.65rem !important;
+  padding: 2px 6px !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-ch-row:hover .dash-ch-col-next span[style*="background:rgba(96,165,250,0.1)"],
+.dash-ch-row:hover .dash-ch-col-next span[style*="background: rgba(96, 165, 250, 0.1)"] {
+  border-color: color-mix(in srgb, var(--ch-hover-accent, #60a5fa) 35%, transparent) !important;
+  background: color-mix(in srgb, var(--ch-hover-accent, #60a5fa) 12%, transparent) !important;
+  color: var(--ch-hover-accent, #60a5fa) !important;
+}
+
+#dash-search {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 9px 12px 9px 38px !important;
+  color: #fff !important;
+  font-size: 0.85rem !important;
+  transition: all 0.25s ease !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+#dash-search:focus {
+  outline: none !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  border-color: var(--accent, #ef4444) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #ef4444) 15%, transparent), inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+#ch-count {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-secondary) !important;
+  padding: 3px 10px !important;
+  font-size: 0.72rem !important;
+  border-radius: 20px !important;
+  font-weight: 700 !important;
+  font-family: var(--font-alt) !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-panel:hover #ch-count {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+#guide-expand-toggle {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-secondary) !important;
+  padding: 8px 16px !important;
+  border-radius: 10px !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#guide-expand-toggle:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+
+#guide-expand-toggle:active {
+  transform: translateY(1px) !important;
+}
+
+/* Empty Search State Clean styling */
+.dash-empty-state {
+  padding: 3rem 1.5rem !important;
+  background: rgba(15, 23, 42, 0.15) !important;
+  border-radius: 16px !important;
+  border: 1px dashed rgba(255, 255, 255, 0.06) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  text-align: center !important;
+}
+
+.dash-empty-state i {
+  font-size: 2.2rem !important;
+  color: var(--text-muted) !important;
+  opacity: 0.6 !important;
+  animation: pulse-live 2s infinite ease-in-out !important;
+}
+
+.dash-empty-state .dash-empty-title {
+  font-family: var(--font-main) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--text-secondary) !important;
+}
+
+.dash-empty-state .dash-empty-hint {
+  font-family: var(--font-alt) !important;
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+}
 `);
 
   // DOM Manipulation to toggle Countdown Expiry with Info Button
@@ -973,7 +1477,7 @@ a[href*="t.me"] {
       let expiryEl = infoCard.querySelector('.dash-stream-expiry');
       if (!expiryEl) {
         expiryEl = document.createElement('div');
-        expiryEl.className = 'dash-stream-expiry';
+        expiryEl.className = 'dash-stream-expiry hidden-expiry';
         expiryEl.innerHTML = `
           <div class="dash-stream-expiry-title">
             <i class="ph ph-clock"></i> Scadenza Flusso
@@ -989,6 +1493,33 @@ a[href*="t.me"] {
         } else {
           infoCard.appendChild(expiryEl);
         }
+      }
+
+      // Default to hidden class if toggle classes are missing
+      if (!expiryEl.classList.contains('show-expiry') && !expiryEl.classList.contains('hidden-expiry')) {
+        expiryEl.classList.add('hidden-expiry');
+      }
+
+      // Check if stream info toggle button already exists
+      let btn = infoCard.querySelector('.stream-info-toggle-btn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.className = 'stream-info-toggle-btn';
+        btn.innerHTML = '<i class="fa fa-info-circle"></i> Info Flusso';
+        btn.addEventListener('click', () => {
+          const isHidden = expiryEl.classList.contains('hidden-expiry');
+          if (isHidden) {
+            expiryEl.classList.remove('hidden-expiry');
+            expiryEl.classList.add('show-expiry');
+            btn.classList.add('active');
+          } else {
+            expiryEl.classList.remove('show-expiry');
+            expiryEl.classList.add('hidden-expiry');
+            btn.classList.remove('active');
+          }
+        });
+        // Insert right before expiryEl
+        expiryEl.before(btn);
       }
 
       // Try to get the expiry date from the settings modal
